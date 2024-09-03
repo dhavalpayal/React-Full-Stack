@@ -3,6 +3,7 @@ import{BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import FooterComponent from './Component/FooterComponent';
 import HeaderComponent from './Component/HeaderComponent';
 import ListEmployeeComponent from './Component/ListEmployeeComponent';
+import CreateEmployeeComponent from './Component/CreateEmployeeComponent';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <switch>
         <Route path="/" Component={ListEmployeeComponent}></Route>
         <Route path="/employees" Component={ListEmployeeComponent}></Route>
-          <ListEmployeeComponent/>
+        <Route path="/add-employee" Component={CreateEmployeeComponent}></Route>
         </switch>
         </div>
     <FooterComponent/>
