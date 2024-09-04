@@ -10,6 +10,14 @@ class EmployeeService{
     createEmployee (emploee) {
         return axios.post(EMPLOYEE_API_BASE_URL, emploee);
     }
+
+    getEmployeesById(emploeeId) {
+        return axios.get(EMPLOYEE_API_BASE_URL + '/' + emploeeId);
+    }
+
+    updateEmployee(emploee, emploeeId){
+        return axios.put(EMPLOYEE_API_BASE_URL+ '/' + emploeeId, emploee);
+    }
 }
 
 export default new EmployeeService()
