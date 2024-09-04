@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import EmployeeService from '../Service/EmployeeService';
 
-class CreateEmployeeComponent extends Component {
+class UpdateEmployeeComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.match.params.id,
             firstName:'',
             lastName:'',
             emailId:''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
-        this.saveEmployee = this.saveEmployee.bind(this);
+        this.updateEmployee = this.upadteEmployee.bind(this);
+    }
+
+    componentDidMount(){
+        EmployeeService.getEmployeeById(this.state.id).then((res) => {
+            let employee = res.data;
+            this.setState({firstName: employee.firstName,
+                lastName: employee.lastName,
+                emailId: employee.emailId
+            });
+        });
     }
     
-    saveEmployee = (e) => {
+    updateEmployee = (e) => {
         e.preventDefault ();
         let employee = {firstName:this.state.firstName, lastName:this.state.lastName, emailId:this.state.emailId};
         console.log('employee => '+JSON.stringify(employee));
@@ -46,7 +57,7 @@ class CreateEmployeeComponent extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Add Employee</h3>
+                            <h3 className="text-center">Update Employee</h3>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
@@ -64,7 +75,7 @@ class CreateEmployeeComponent extends Component {
                                         <input placeholder="emailId" className="form-control" value={this.state.emailId}
                                          onChange={this.changeEmailIdHandler}/>
                                     </div>
-                                    <button className="btn btn-success" onClick={this.saveEmployee}>Save</button>
+                                    <button className="btn btn-success" onClick={this.updateEmployee}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft:"10px"}}>Cancel</button>
                                 </form>
                             </div>
@@ -76,4 +87,4 @@ class CreateEmployeeComponent extends Component {
     }
 }
 
-export default CreateEmployeeComponent;
+export default UpdateEmployeeComponent;
