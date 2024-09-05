@@ -9,6 +9,18 @@ export default class ListEmployeeComponent extends Component {
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.updateemployee = this.updateemployee.bind(this);
+        this.deleteemployee = this.deleteemployee.bind(this);
+    }
+
+    deleteemployee(id){
+        EmployeeService.deleteEmployee(id).then(res => {
+            this.setState({employee: this.state.employees.filter(employee =>employee.id)
+            });
+        });
+    }
+
+    viewemployee(id){
+        this.props.history.push(`/view-employee/${id}`);
     }
     
     updateemployee(id){
@@ -52,6 +64,8 @@ export default class ListEmployeeComponent extends Component {
                                     <td>{employee.emailId}</td>
                                     <td>
                                         <button onClick={() => this.updateemployee(employee.id)} className="btn btn-info">Update</button>
+                                        <button style={{marginLeft: "10px"}} onClick={() => this.deleteemployee(employee.id)} className="btn btn-danger">Delete</button>
+                                        <button style={{marginLeft: "10px"}} onClick={() => this.viewemployee(employee.id)} className="btn btn-info">View</button>
                                     </td>
                                 </tr>
                         )
