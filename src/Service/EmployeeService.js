@@ -7,16 +7,20 @@ class EmployeeService{
         return axios.get(EMPLOYEE_API_BASE_URL);
     }
 
-    createEmployee (emploee) {
-        return axios.post(EMPLOYEE_API_BASE_URL, emploee);
+    createEmployee (employee) {
+        return axios.post(EMPLOYEE_API_BASE_URL, employee);
     }
 
-    getEmployeesById(emploeeId) {
-        return axios.get(EMPLOYEE_API_BASE_URL + '/' + emploeeId);
+    getEmployeesById(employeeId) {
+        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
     }
 
-    updateEmployee(emploee, emploeeId){
-        return axios.put(EMPLOYEE_API_BASE_URL+ '/' + emploeeId, emploee);
+    updateEmployee(employee, employeeId){
+        return axios.put(EMPLOYEE_API_BASE_URL + '/' + employeeId, employee);
+    }
+
+    deleteEmployee(employeeId) {
+        return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
     }
 }
 

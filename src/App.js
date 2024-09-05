@@ -12,11 +12,11 @@ function App() {
       <Router>
       <HeaderComponent/>
           <div className="container">
-      <switch>localhost:3000/update-employee/1
+      <switch>
         <Route path="/" Component={ListEmployeeComponent}></Route>
         <Route path="/employees" Component={ListEmployeeComponent}></Route>
-        <Route path="/add-employee" Component={CreateEmployeeComponent}></Route>
-        <Route path="/update-employee/:id" Component={UpdateEmployeeComponent}></Route>
+        <Route path="/add-employee/:id" Component={CreateEmployeeComponent}></Route>
+        {/* <Route path="/update-employee/:id" Component={UpdateEmployeeComponent}></Route> */}
         </switch>
         </div>
     <FooterComponent/>
